@@ -1,19 +1,8 @@
 /// <reference lib="webworker" />
 
-import { fromEvent } from "rxjs";
+import { ObservableWorker } from "./observable-worker/observable-worker.decorator";
 
-export class DemoWorker {
-  
-  #message$ = fromEvent<MessageEvent>(self, 'message');
-
-  constructor() {
-    this.#message$.subscribe(event => {
-      const response = `worker response to ${event.data}`;
-      postMessage(response);
-    })
-  }
-}
-
-new DemoWorker();
+@ObservableWorker()
+export class DemoWorker {}
 
 
