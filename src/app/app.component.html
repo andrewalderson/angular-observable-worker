@@ -1,6 +1,6 @@
-<div>{{counter | async}}</div>
+<div>{{counterService.counter | async}}</div>
 <div>
-    <button (click)="increment()">+</button>
-    <button (click)="decrement()">-</button>
+    <button (click)="counterService.increment()">+</button>
+    <button (click)="counterService.decrement()">-</button>
 </div>
 

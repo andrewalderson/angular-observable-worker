@@ -1,5 +1,5 @@
 import { BehaviorSubject } from "rxjs";
-import { ObservableWorker } from "./observable-worker/observable-worker.decorator";
+import { ObservableWorker } from "../observable-worker/observable-worker.decorator";
 
 @ObservableWorker()
 export class DemoWorker {

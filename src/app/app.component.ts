@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Remote, wrap } from "comlink";
-import { Observable } from 'rxjs';
-import { DemoWorker } from './demo.worker';
+import { Component } from '@angular/core';
+import { CounterService } from './counter/counter.service';
 import './observable-worker/transfer-handlers';
 
 @Component({
@@ -13,24 +11,9 @@ import './observable-worker/transfer-handlers';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  #instance!: Remote<DemoWorker>;
+  constructor(protected readonly counterService: CounterService) {}
 
-  protected counter!: Observable<number>;
-
-  async ngOnInit() {
-    const worker = wrap<typeof DemoWorker>(new Worker(new URL('./demo.worker', import.meta.url)));
-    this.#instance = await new worker();
-    this.counter = await this.#instance.counter;
-  }
-
-  increment() {
-    this.#instance.increment();
-  }
-
-  decrement() {
-    this.#instance.decrement();
-  }
 }
   
