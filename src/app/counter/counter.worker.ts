@@ -5,9 +5,10 @@ import { ObservableWorker } from "../observable-worker/observable-worker.decorat
 export class CounterWorker {
     
     get counter() {
-        return this.#counter;
+        return this.#counterObservable;
     }
     #counter = new BehaviorSubject<number>(0);
+    #counterObservable = this.#counter.asObservable();
 
     increment() {
         this.#counter.next(this.#counter.value + 1)
