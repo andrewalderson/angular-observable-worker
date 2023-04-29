@@ -2,7 +2,7 @@ import { BehaviorSubject } from "rxjs";
 import { ObservableWorker } from "../observable-worker/observable-worker.decorator";
 
 @ObservableWorker()
-export class DemoWorker {
+export class CounterWorker {
     
     get counter() {
         return this.#counter;

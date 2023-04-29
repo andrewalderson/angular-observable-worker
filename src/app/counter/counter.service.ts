@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Remote, wrap } from 'comlink';
 import { Observable } from 'rxjs';
-import { DemoWorker } from './counter.worker';
+import { CounterWorker } from './counter.worker';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CounterService {
 
-  #instance!: Remote<DemoWorker>;
+  #instance!: Remote<CounterWorker>;
 
   #counter!: Observable<number>;
   
@@ -17,7 +17,7 @@ export class CounterService {
   }
 
   async init() {
-    const worker = wrap<typeof DemoWorker>(new Worker(new URL('./counter.worker', import.meta.url)));
+    const worker = wrap<typeof CounterWorker>(new Worker(new URL('./counter.worker', import.meta.url)));
     this.#instance = await new worker();
     
     this.#counter = await this.#instance.counter; 
