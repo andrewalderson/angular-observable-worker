@@ -16,7 +16,7 @@ export class CounterService {
     this.init();
   }
 
-  async init(): Promise<Promise<void>> {
+  async init() {
     const worker = wrap<typeof DemoWorker>(new Worker(new URL('./counter.worker', import.meta.url)));
     this.#instance = await new worker();
     
