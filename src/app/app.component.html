@@ -1,6 +1,8 @@
-<div>{{counterService.counter | async}}</div>
-<div>
-    <button (click)="counterService.increment()">+</button>
-    <button (click)="counterService.decrement()">-</button>
-</div>
+<ng-container *ngIf="counterService.counter as counter">
+    <div>{{counter | async}}</div>
+    <div>
+        <button (click)="counterService.increment()">+</button>
+        <button (click)="counterService.decrement()">-</button>
+    </div>
+</ng-container>
 
